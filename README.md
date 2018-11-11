@@ -1,1 +1,1 @@
-wating
+waiting
