@@ -1,0 +1,54 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>be strong</title>
+    <link rel="stylesheet" type="text/css" href="static/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="static/fonts/font-awesome-4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="static/css/demo.css">
+    <link rel="stylesheet" type="text/css" href="static/css/component.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+</head>
+<body>
+<div class="center-1 bgcolor-3">
+    <h2>How deep is your love</h2>
+    <span class="input input--kyo">
+			<textarea class="input__field input__field--kyo" maxlength="140" id="message">your message</textarea>
+		</span>
+    <button class="send-button" type="button" id="sendToAlice" value="alice">To Alice</button>
+    <button class="send-button" type="button" id="sendToBob" value="bob">To Bob</button>
+</div>
+<script>
+    $("#sendToAlice").click(function () {
+        $.post("/send",
+                {
+                    "name": $("#sendToAlice").val(),
+                    "mes": $("#message").val()
+                },
+                function (data, status) {
+                    if (status == "success") {
+                        alert(data)
+                        window.location.href="/hello/alice"
+                    }
+                }
+        )
+    })
+
+    $("#sendToBob").click(function () {
+        $.post("/send",
+                {
+                    "name": $("#sendToBob").val(),
+                    "mes": $("#message").val()
+                },
+                function (data, status) {
+                    if (status == "success") {
+                        alert(data)
+                        window.location.href="/hello/bob"
+                    }
+                }
+        )
+    })
+</script>
+</body>
+</html>
